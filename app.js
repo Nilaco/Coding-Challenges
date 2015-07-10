@@ -1,3 +1,5 @@
+var familyTree = [];
+
 function Person(name)
 {
 	this.name = name;
@@ -5,17 +7,22 @@ function Person(name)
 	this.children = [];
 	this.siblings = [];
 	
-	this.getChildren = function () 
+	this.addChild = function(name) 
 	{
-		return this.children;	
-	}
+		var child = new Person(name)
+		child.parent = this
+		this.children.push(child);
+	};
+	
+	this.init();
 };
 
-var Nancy = new Person("Nancy")
-var Adam = new Person("Adam")
-var Jill = new Person("Jill")
-var Carl = new Person("Carl")
+Person.prototype.init = function(){
+	familyTree.push(this)
+};
 
-Nancy.children.push(Adam, Jill, Carl)
-
-console.log(Nancy.getChildren());
+//Driver test
+console.log(familyTree);
+var nancy = new Person("Nancy");
+nancy.addChild("Adam")
+console.log(familyTree);

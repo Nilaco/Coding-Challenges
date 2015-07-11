@@ -29,6 +29,7 @@ Person.prototype.init = function(){
 	familyTree.push(this)
 };
 
+//Grab person object
 var findPerson = function(name){
 	for (var i = 0; i < familyTree.length; i++) {
 		if (familyTree[i].name === name){
@@ -38,6 +39,7 @@ var findPerson = function(name){
 	console.log("Person not found");
 }
 
+//Return names of the childless 
 var noChildren = function(){
 	for (var i = 0; i < familyTree.length; i++) {
 		if (familyTree[i].children.length === 0){
@@ -46,6 +48,7 @@ var noChildren = function(){
 	}
 }
 
+//Return name of most plentiful grandmother
 var highestGrandchildren = function(){
 	var highest = familyTree[0];
 	for (var i = 0; i < familyTree.length-1; i++) {
@@ -73,6 +76,7 @@ findPerson("George").addChild("Patrick")
 findPerson("George").addChild("Robert")
 
 
-console.log(findPerson("Kevin").grandchildren)
+// console.log(findPerson("Kevin").grandchildren)
 noChildren();
+console.log("-----------");
 highestGrandchildren();

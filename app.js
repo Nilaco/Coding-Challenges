@@ -8,15 +8,19 @@ function Person(name)
 	this.children = [];
 	this.siblings = [];
 	this.grandparent = null;
+	this.grandchildren = 0;
 	
 	this.addChild = function(name) {
 		var child = new Person(name);
 		child.parent = this;
 			if (child.parent.parent != null) {
-				child.grandparent = child.parent.parent;
+				var granny = child.parent.parent
+				child.grandparent = granny.name;
+				granny.grandchildren += 1;
 			}
 		this.children.push(child);
 	};
+	//Auto add to family tree
 	this.init();
 };
 
@@ -28,11 +32,28 @@ Person.prototype.init = function(){
 var findPerson = function(name){
 	for (var i = 0; i < familyTree.length; i++) {
 		if (familyTree[i].name === name){
-//			console.log(familyTree[i]);
 			return familyTree[i];
 		}
 	}
 	console.log("Person not found");
+}
+
+var noChildren = function(){
+	for (var i = 0; i < familyTree.length; i++) {
+		if (familyTree[i].children.length === 0){
+			console.log(familyTree[i].name);
+		}
+	}
+}
+
+var highestGrandchildren = function(){
+	var highest = familyTree[0];
+	for (var i = 0; i < familyTree.length-1; i++) {
+		if (familyTree[i].grandchildren > highest.grandchildren){
+			highest = familyTree[i]
+		}
+	}
+	console.log(highest.name);
 }
 
 //Add family members
@@ -52,4 +73,6 @@ findPerson("George").addChild("Patrick")
 findPerson("George").addChild("Robert")
 
 
-console.log(findPerson("James").grandparent)
+console.log(findPerson("Kevin").grandchildren)
+noChildren();
+highestGrandchildren();

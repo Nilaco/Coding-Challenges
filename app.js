@@ -1,5 +1,33 @@
-//Hold family members
-var familyTree = [];
+var familyTree = {
+	members: [],
+	//Return person object
+	find: function(name){
+		for (var i = 0; i < familyTree.members.length; i++) {
+			if (familyTree.members[i].name === name){
+				return familyTree.members[i];
+			};
+		};
+		console.log("Person not found");
+	},
+	//Log names of those with no children	
+	childLess: function () {
+		for (var i = 0; i < familyTree.members.length; i++) {
+			if (familyTree.members[i].children.length === 0){
+				console.log(familyTree.members[i].name);
+			};
+		};
+	},
+	//Log most plentiful grandmother
+	mostGrandchildren: function () {
+		var highest = familyTree.members[0];
+		for (var i = 0; i < familyTree.members.length-1; i++) {
+			if (familyTree.members[i].grandchildren > highest.grandchildren){
+				highest = familyTree.members[i]
+			};
+		};
+		console.log(highest.name);
+	}
+}
 
 function Person(name)
 {
@@ -26,57 +54,26 @@ function Person(name)
 
 //Add new people to family tree
 Person.prototype.init = function(){
-	familyTree.push(this)
+	familyTree.members.push(this)
 };
-
-//Grab person object
-var findPerson = function(name){
-	for (var i = 0; i < familyTree.length; i++) {
-		if (familyTree[i].name === name){
-			return familyTree[i];
-		}
-	}
-	console.log("Person not found");
-}
-
-//Return names of the childless 
-var noChildren = function(){
-	for (var i = 0; i < familyTree.length; i++) {
-		if (familyTree[i].children.length === 0){
-			console.log(familyTree[i].name);
-		}
-	}
-}
-
-//Return name of most plentiful grandmother
-var highestGrandchildren = function(){
-	var highest = familyTree[0];
-	for (var i = 0; i < familyTree.length-1; i++) {
-		if (familyTree[i].grandchildren > highest.grandchildren){
-			highest = familyTree[i]
-		}
-	}
-	console.log(highest.name);
-}
 
 //Add family members
 var nancy = new Person("Nancy");
-nancy.addChild("Adam")
-nancy.addChild("Jill")
-nancy.addChild("Carl")
-findPerson("Carl").addChild("Joseph")
-findPerson("Carl").addChild("Catherine")
-findPerson("Jill").addChild("Kevin")
-findPerson("Kevin").addChild("Samuel")
-findPerson("Kevin").addChild("George")
-findPerson("Kevin").addChild("James")
-findPerson("Kevin").addChild("Aaron")
-findPerson("James").addChild("Mary")
-findPerson("George").addChild("Patrick")
-findPerson("George").addChild("Robert")
+nancy.addChild("Adam");
+nancy.addChild("Jill");
+nancy.addChild("Carl");
+familyTree.find("Carl").addChild("Joseph");
+familyTree.find("Carl").addChild("Catherine");
+familyTree.find("Jill").addChild("Kevin");
+familyTree.find("Kevin").addChild("Samuel");
+familyTree.find("Kevin").addChild("George");
+familyTree.find("Kevin").addChild("James");
+familyTree.find("Kevin").addChild("Aaron");
+familyTree.find("James").addChild("Mary");
+familyTree.find("George").addChild("Patrick");
+familyTree.find("George").addChild("Robert");
 
-
-// console.log(findPerson("Kevin").grandchildren)
-noChildren();
-console.log("-----------");
-highestGrandchildren();
+//Driver tests
+familyTree.mostGrandchildren();
+console.log("-------")
+familyTree.childLess();

@@ -15,6 +15,14 @@ var familyTree = {
 		console.log(this.find(name).grandparent);
 	},
 	
+	siblingLess: function(){
+		for (var i = 0; i < familyTree.members.length; i++) {
+			if (familyTree.members[i].siblings().length === 1){
+				console.log(familyTree.members[i].name);
+			};
+		};
+	},
+	
 	//Log names of those with no children	
 	childLess: function () {
 		for (var i = 0; i < familyTree.members.length; i++) {
@@ -47,7 +55,7 @@ function Person(name)
 		if (this.parent != null){
 			return this.parent.children
 		} else{
-			return null;
+			return [this];
 		};
 	},
 	//Auto assign parents to children for member associations
@@ -89,7 +97,7 @@ familyTree.find("George").addChild("Robert");
 //Driver tests
 familyTree.grandparentOf("Kevin");
 console.log("-------");
-console.log(familyTree.find("Carl").siblings())
+familyTree.siblingLess();
 console.log("-------");
 familyTree.mostGrandchildren();
 console.log("-------")

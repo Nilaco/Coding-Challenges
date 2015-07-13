@@ -9,6 +9,12 @@ var familyTree = {
 		};
 		console.log("Person not found");
 	},
+
+	//Log grandparents name
+	grandparentOf: function(name){
+		console.log(this.find(name).grandparent);
+	},
+	
 	//Log names of those with no children	
 	childLess: function () {
 		for (var i = 0; i < familyTree.members.length; i++) {
@@ -38,6 +44,7 @@ function Person(name)
 	this.grandparent = null;
 	this.grandchildren = 0;
 	
+	//Auto assign parents to children for member associations
 	this.addChild = function(name) {
 		var child = new Person(name);
 		child.parent = this;

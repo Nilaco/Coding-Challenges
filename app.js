@@ -8,13 +8,12 @@ var familyTree = {
 			};
 		};
 		console.log("Person not found");
-	},
-	
+	},	
 	//Log grandparents name
 	grandparentOf: function(name){
 		console.log(this.find(name).grandparent);
 	},
-	
+	//Log names of those with no siblings
 	siblingLess: function(){
 		for (var i = 0; i < familyTree.members.length; i++) {
 			if (familyTree.members[i].siblings().length === 1){
@@ -22,7 +21,6 @@ var familyTree = {
 			};
 		};
 	},
-	
 	//Log names of those with no children	
 	childLess: function () {
 		for (var i = 0; i < familyTree.members.length; i++) {

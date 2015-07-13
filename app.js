@@ -9,7 +9,7 @@ var familyTree = {
 		};
 		console.log("Person not found");
 	},
-
+	
 	//Log grandparents name
 	grandparentOf: function(name){
 		console.log(this.find(name).grandparent);
@@ -40,10 +40,16 @@ function Person(name)
 	this.name = name;
 	this.parent = null;
 	this.children = [];
-	this.siblings = [];
 	this.grandparent = null;
 	this.grandchildren = 0;
-	
+	//Return all siblings, updated every call
+	this.siblings = function(){
+		if (this.parent != null){
+			return this.parent.children
+		} else{
+			return null;
+		};
+	},
 	//Auto assign parents to children for member associations
 	this.addChild = function(name) {
 		var child = new Person(name);
@@ -61,7 +67,7 @@ function Person(name)
 
 //Add new people to family tree
 Person.prototype.init = function(){
-	familyTree.members.push(this)
+	familyTree.members.push(this);
 };
 
 //Add family members
@@ -81,6 +87,10 @@ familyTree.find("George").addChild("Patrick");
 familyTree.find("George").addChild("Robert");
 
 //Driver tests
+familyTree.grandparentOf("Kevin");
+console.log("-------");
+console.log(familyTree.find("Carl").siblings())
+console.log("-------");
 familyTree.mostGrandchildren();
 console.log("-------")
 familyTree.childLess();

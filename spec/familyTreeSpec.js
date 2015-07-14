@@ -42,7 +42,7 @@ describe("Tests expected results from given functions", function(){
 		expect(familyTree.siblingLess()).toContain("Nancy", "Kevin", "Mary");
 	});
 
-	it("Returns all members with no children(Adam, Catherinem Joseph, Samuel, Aaron, Mary, Patrick, Robert)", function(){
+	it("Returns all members with no children(Adam, Catherine Joseph, Samuel, Aaron, Mary, Patrick, Robert)", function(){
 		expect(familyTree.childLess()).toContain("Adam", "Catherine", "Joseph", "Samuel", "Aaron", "Mary", "Patrick", "Robert");
 	});
 

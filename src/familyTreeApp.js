@@ -62,7 +62,7 @@ function Person(name)
 		child.parent = this;
 			if (child.parent.parent != null) {
 				var granny = child.parent.parent
-				child.grandparent = granny.name;
+				child.grandparent = granny;
 				granny.grandchildren += 1;
 			}
 		this.children.push(child);
@@ -77,26 +77,26 @@ Person.prototype.init = function(){
 };
 
 //Add family members
-var nancy = new Person("Nancy");
-nancy.addChild("Adam");
-nancy.addChild("Jill");
-nancy.addChild("Carl");
-familyTree.find("Carl").addChild("Joseph");
-familyTree.find("Carl").addChild("Catherine");
-familyTree.find("Jill").addChild("Kevin");
-familyTree.find("Kevin").addChild("Samuel");
-familyTree.find("Kevin").addChild("George");
-familyTree.find("Kevin").addChild("James");
-familyTree.find("Kevin").addChild("Aaron");
-familyTree.find("James").addChild("Mary");
-familyTree.find("George").addChild("Patrick");
-familyTree.find("George").addChild("Robert");
+// var nancy = new Person("Nancy");
+// nancy.addChild("Adam");
+// nancy.addChild("Jill");
+// nancy.addChild("Carl");
+// familyTree.find("Carl").addChild("Joseph");
+// familyTree.find("Carl").addChild("Catherine");
+// familyTree.find("Jill").addChild("Kevin");
+// familyTree.find("Kevin").addChild("Samuel");
+// familyTree.find("Kevin").addChild("George");
+// familyTree.find("Kevin").addChild("James");
+// familyTree.find("Kevin").addChild("Aaron");
+// familyTree.find("James").addChild("Mary");
+// familyTree.find("George").addChild("Patrick");
+// familyTree.find("George").addChild("Robert");
 
-//Driver tests
-familyTree.grandparentOf("Kevin");
-console.log("-------");
-familyTree.siblingLess();
-console.log("-------");
-familyTree.mostGrandchildren();
-console.log("-------")
-familyTree.childLess();
+// //Driver tests
+// familyTree.grandparentOf("Kevin");
+// console.log("-------");
+// familyTree.siblingLess();
+// console.log("-------");
+// familyTree.mostGrandchildren();
+// console.log("-------")
+// familyTree.childLess();

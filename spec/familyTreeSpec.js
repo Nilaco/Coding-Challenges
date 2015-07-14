@@ -31,17 +31,22 @@ describe("Tests creation and associations of people", function(){
 	it("Child and parent association", function(){
 		expect(familyTree.find("George").parent.name).toBe("Kevin");
 	});
-	it("Child and grandparent association(Kevin => Nancy)", function(){
-		expect(familyTree.find("Kevin").grandparent.name).toBe("Nancy");
-	});
 })
 
 describe("Tests expected results from given functions", function(){
-	it("Returns all members with no siblings", function(){
+	it("Returns the appropriate grandparent association(Kevin => Nancy)", function(){
+		expect(familyTree.find("Kevin").grandparent.name).toBe("Nancy");
+	});
+
+	it("Returns all members with no siblings(Nancy, Kevin, Mary)", function(){
 		expect(familyTree.siblingLess()).toContain("Nancy", "Kevin", "Mary");
 	});
 
-	it("Returns all members with no children", function(){
+	it("Returns all members with no children(Adam, Catherinem Joseph, Samuel, Aaron, Mary, Patrick, Robert)", function(){
 		expect(familyTree.childLess()).toContain("Adam", "Catherine", "Joseph", "Samuel", "Aaron", "Mary", "Patrick", "Robert");
+	});
+
+	it("Returns the most plentiful grandmother(Jill)", function(){
+		expect(familyTree.mostGrandchildren().name).toBe("Jill");
 	});
 });

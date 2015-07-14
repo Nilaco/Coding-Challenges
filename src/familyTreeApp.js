@@ -15,19 +15,25 @@ var familyTree = {
 	},
 	//Log names of those with no siblings
 	siblingLess: function(){
+		var siblingLessArray = [];
 		for (var i = 0; i < familyTree.members.length; i++) {
 			if (familyTree.members[i].siblings().length === 1){
 				console.log(familyTree.members[i].name);
+				siblingLessArray.push(familyTree.members[i].name);
 			};
 		};
+		return siblingLessArray;
 	},
 	//Log names of those with no children	
 	childLess: function () {
+		var childLessArray = [];
 		for (var i = 0; i < familyTree.members.length; i++) {
 			if (familyTree.members[i].children.length === 0){
 				console.log(familyTree.members[i].name);
+				childLessArray.push(familyTree.members[i].name);
 			};
 		};
+		return childLessArray;
 	},
 	//Log most plentiful grandmother
 	mostGrandchildren: function () {

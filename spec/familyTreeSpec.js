@@ -8,7 +8,7 @@ describe("Tests existence of family tree", function(){
 	});
 });
 
-describe("Tests creation of people", function(){
+describe("Tests creation and associations of people", function(){
 	var nancy = new Person("Nancy");
 	nancy.addChild("Adam");
 	nancy.addChild("Jill");
@@ -24,14 +24,24 @@ describe("Tests creation of people", function(){
 	familyTree.find("George").addChild("Patrick");
 	familyTree.find("George").addChild("Robert");
 
-	it("Create a people objects", function(){
+	it("Creates people objects", function(){
 		expect(nancy.name).toBe("Nancy");
 	});
 
 	it("Child and parent association", function(){
 		expect(familyTree.find("George").parent.name).toBe("Kevin");
 	});
-	it("Child and grandparent association", function(){
+	it("Child and grandparent association(Kevin => Nancy)", function(){
 		expect(familyTree.find("Kevin").grandparent.name).toBe("Nancy");
-	})
+	});
 })
+
+describe("Tests expected results from given functions", function(){
+	it("Returns all members with no siblings", function(){
+		expect(familyTree.siblingLess()).toContain("Nancy", "Kevin", "Mary");
+	});
+
+	it("Returns all members with no children", function(){
+		expect(familyTree.childLess()).toContain("Adam", "Catherine", "Joseph", "Samuel", "Aaron", "Mary", "Patrick", "Robert");
+	});
+});
